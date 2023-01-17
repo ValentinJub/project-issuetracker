@@ -5,7 +5,7 @@
 </div>
 <script>
   function redirect() {
-    let inputValue = document.getElementById("input-field").value;
+    let inputValue = document.getElementById("projectName").value;
     let currentUrl = window.location.href;
     let newUrl = currentUrl + "/api/issues/" + inputValue;
     window.location.href = newUrl;
