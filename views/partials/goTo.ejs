@@ -1,0 +1,13 @@
+<div>
+  <label>Go to a project page</label>
+  <input type="text" id="projectName" name="project">
+  <button onclick="redirect()">Go</button>
+</div>
+<script>
+  function redirect() {
+    let inputValue = document.getElementById("input-field").value;
+    let currentUrl = window.location.href;
+    let newUrl = currentUrl + "/api/issues/" + inputValue;
+    window.location.href = newUrl;
+  }
+</script>

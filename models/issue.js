@@ -1,0 +1,45 @@
+const mongoose = require('mongoose')
+
+const issueSchema = new mongoose.Schema({
+  project: {
+    type: String,
+    required: true
+  },
+  issue_title: {
+    type: String,
+    required: true
+  },
+  issue_text: {
+    type: String,
+    required: true
+  },
+  created_on: {
+    type: Date,
+    required: true,
+    default: new Date()
+  },
+  created_by: {
+    type: String,
+    required: true
+  },
+  updated_on: {
+    type: Date,
+    required: true,
+    default: new Date()
+  },
+  assigned_to: {
+    type: String,
+    required: false
+  },
+  open: {
+    type: Boolean,
+    required: true,
+    default: true
+  },
+  status_text: {
+    type: String,
+    required: false
+  }
+})
+
+module.exports = mongoose.model('Issues', issueSchema)

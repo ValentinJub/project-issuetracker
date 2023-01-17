@@ -9,35 +9,41 @@ require('dotenv').config();
 const apiRoutes         = require('./routes/api.js');
 const fccTestingRoutes  = require('./routes/fcctesting.js');
 const runner            = require('./test-runner');
+const mongoose          = require('mongoose')
+const mongoURI          = process.env.MONGO_URI
+
+const expressLayouts    = require('express-ejs-layouts');
+const methodOverride    = require('method-override');
+
+const indexRouter       = require('./routes/index')
+
 
 let app = express();
 
-app.use('/public', express.static(process.cwd() + '/public'));
-
 app.use(cors({origin: '*'})); //For FCC testing purposes only
-
-
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.set('view engine', 'ejs');
+app.set('views, __dirname + /views');
+app.set('layout', 'layouts/layout');
+app.use(methodOverride('_method'));
+app.use(expressLayouts);
+app.use(express.static('public'));
 
-//Sample front-end
-app.route('/:project/')
-  .get(function (req, res) {
-    res.sendFile(process.cwd() + '/views/issue.html');
-  });
+mongoose.set('strictQuery', true)
 
-//Index page (static HTML)
-app.route('/')
-  .get(function (req, res) {
-    res.sendFile(process.cwd() + '/views/index.html');
-  });
+mongoose.connect(mongoURI).then(
+  () => { return console.log('Connected to MongoDB') },
+  (err) => { return console.error(err) }
+)
 
 //For FCC testing purposes
 fccTestingRoutes(app);
 
-//Routing for API 
-apiRoutes(app);  
+// //Routing for API 
+// apiRoutes(app);
+
+app.use('/', indexRouter);
     
 //404 Not Found Middleware
 app.use(function(req, res, next) {
