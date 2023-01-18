@@ -1,0 +1,13 @@
+<% issues.forEach( issue => { %>
+  { 
+    "_id": "<%= issue._id %>",
+    "issue_title": "<%= issue.issue_title %>",
+    "issue_text": "<%= issue.issue_text %>",
+    "created_on": "<%= issue.created_on%>",
+    "updated_on": "<%= issue.updated_on %>",
+    "created_by": "<%= issue.created_by %>",
+    "assigned_to": "<%= issue.assigned_to %>",
+    "open": <%= issue.open %>,
+    "status_text": "<%= issue.status_text %>"
+  },
+<% }) %>

@@ -47,6 +47,7 @@ app.use('/', indexRouter);
     
 //404 Not Found Middleware
 app.use(function(req, res, next) {
+  logger(req);
   res.status(404)
     .type('text')
     .send('Not Found');
@@ -67,5 +68,10 @@ const listener = app.listen(process.env.PORT || 3000, function () {
     }, 3500);
   }
 });
+
+function logger(req) {
+  console.log('%s %s %s', req.method, req.url, req.path);
+}
+
 
 module.exports = app; //for testing
