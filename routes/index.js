@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
   logger(req);
   let issues;
   try {
-    issues = await Issue.find().limit(10).exec();
+    issues = await Issue.find().limit(2).exec();
     console.log(issues)
     res.render('index', {
       issues: issues

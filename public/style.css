@@ -5,6 +5,11 @@
 
 body {
   padding: 10px;
+  background-color: #FDFEDE;
+}
+
+.centerElements {
+  background-color: #FCEE95;
 }
 
 .issue {

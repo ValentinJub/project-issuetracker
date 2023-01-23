@@ -15,8 +15,7 @@ const issueSchema = new mongoose.Schema({
   },
   created_on: {
     type: Date,
-    required: true,
-    default: new Date()
+    required: true
   },
   created_by: {
     type: String,
@@ -24,12 +23,12 @@ const issueSchema = new mongoose.Schema({
   },
   updated_on: {
     type: Date,
-    required: true,
-    default: new Date()
+    required: true
   },
   assigned_to: {
     type: String,
-    required: false
+    required: false,
+    default: ''
   },
   open: {
     type: Boolean,
@@ -38,7 +37,8 @@ const issueSchema = new mongoose.Schema({
   },
   status_text: {
     type: String,
-    required: false
+    required: false,
+    default: ''
   }
 })
 

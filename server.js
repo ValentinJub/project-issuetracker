@@ -6,7 +6,6 @@ const expect      = require('chai').expect;
 const cors        = require('cors');
 require('dotenv').config();
 
-const apiRoutes         = require('./routes/api.js');
 const fccTestingRoutes  = require('./routes/fcctesting.js');
 const runner            = require('./test-runner');
 const mongoose          = require('mongoose')
@@ -16,7 +15,7 @@ const expressLayouts    = require('express-ejs-layouts');
 const methodOverride    = require('method-override');
 
 const indexRouter       = require('./routes/index')
-
+const apiRouter     = require('./routes/api')
 
 let app = express();
 
@@ -44,6 +43,7 @@ fccTestingRoutes(app);
 // apiRoutes(app);
 
 app.use('/', indexRouter);
+app.use('/api/issues', apiRouter);
     
 //404 Not Found Middleware
 app.use(function(req, res, next) {
